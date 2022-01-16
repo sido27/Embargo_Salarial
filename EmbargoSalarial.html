@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Embargo Salarial</title>
+    <title>Embargo Salarial Mensual</title>
     <style>
       * {
         zoom: 130%;
@@ -81,7 +81,8 @@
             }
 
          }
-     
+            console.log(array_salario);
+            console.log(array_salario2);
          let monthlyDebt = array_salario2.reduce((a,b)=>a+b)
          let durcacion = (debt.value / monthlyDebt).toFixed(2) 
 
