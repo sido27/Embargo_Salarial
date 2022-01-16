@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Embargo Salarial</title>
     <style>
       * {
         zoom: 130%;
@@ -12,6 +12,7 @@
     </style>
   </head>
   <body>
+      <h1>SMI = 965</h1>
     SLARAIO NETO
     <input type="text" id="neto" />
 
@@ -27,38 +28,75 @@
     let btn = document.querySelector("#btn");
 
     btn.addEventListener("click", function () {
-      let first = 0;
-      let second = 0;
-      let third = 0;
-      let fourth = 0;
-      let fifth = 0;
-
+    
+    
       if (salario.value > 965) {
-        first = (salario.value - 965) * 0.3;
+       
+            // 1.86
+            let cont = 1
+            let sal = salario.value
+            let array_salario = []
+         while (sal > 965)
+         {
+               
+            array_salario.push(965)
 
-        if (first > 965) {
-          second = (first - 965) * 0.5;
-
-          if (second > 965) {
-            third = (second - 965) * 0.6;
-
-            if (third > 965) {
-              fourth = (third - 965) * 0.75;
-
-              if (fourth > 965) {
-                fifth = (fourth - 965) * 0.9;
-              }
+            if ((sal - 965 ) < 965 )
+            {
+                array_salario.push(sal - 965)
             }
-          }
-        }
+               
+          sal= sal - 965
+          cont++
+         }
+          
+         let array_salario2 = []
+         for ( i in array_salario)
+         {
+            
+            
+            if ( i == 1 )
+            {
+                array_salario2.push(array_salario[i] * 0.3 )
+            }
 
-        res.innerHTML = `${
-          first + second + third + fourth + fifth
-        } en duración de ${(
-          debt.value /
-          (first + second + third + fourth + fifth)
-        ).toFixed(2)} meses`;
-      } else {
+            if (i == 2 )
+            {
+                array_salario2.push(array_salario[i] * 0.5 )
+            }
+
+            if (i == 3 )
+            {
+                array_salario2.push(array_salario[i] * 0.6 )
+            }
+
+            if (i == 4 )
+            {
+                array_salario2.push(array_salario[i] * 0.75 )
+            }
+
+            if (i >= 5 )
+            {
+                array_salario2.push(array_salario[i] * 0.9 )
+            }
+
+         }
+     
+         let monthlyDebt = array_salario2.reduce((a,b)=>a+b)
+         let durcacion = (debt.value / monthlyDebt).toFixed(2) 
+
+        
+         if ( durcacion < 1)
+         {
+           durcacion = 1
+         }
+        
+         res.innerHTML = ` ${monthlyDebt} en duración de ${durcacion} meses`;
+
+
+      }
+      
+      else {
         res.innerHTML = ` no`;
       }
     });
