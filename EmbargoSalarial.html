@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        zoom: 130%;
+      }
+    </style>
+  </head>
+  <body>
+    SLARAIO NETO
+    <input type="text" id="neto" />
+
+    DEUDA
+    <input type="text" id="debt" />
+    <button id="btn">button</button>
+    <div id="res"></div>
+  </body>
+  <script>
+    let salario = document.querySelector("#neto");
+    let debt = document.querySelector("#debt");
+    let res = document.querySelector("#res");
+    let btn = document.querySelector("#btn");
+
+    btn.addEventListener("click", function () {
+      let first = 0;
+      let second = 0;
+      let third = 0;
+      let fourth = 0;
+      let fifth = 0;
+
+      if (salario.value > 965) {
+        first = (salario.value - 965) * 0.3;
+
+        if (first > 965) {
+          second = (first - 965) * 0.5;
+
+          if (second > 965) {
+            third = (second - 965) * 0.6;
+
+            if (third > 965) {
+              fourth = (third - 965) * 0.75;
+
+              if (fourth > 965) {
+                fifth = (fourth - 965) * 0.9;
+              }
+            }
+          }
+        }
+
+        res.innerHTML = `${
+          first + second + third + fourth + fifth
+        } en duración de ${(
+          debt.value /
+          (first + second + third + fourth + fifth)
+        ).toFixed(2)} meses`;
+      } else {
+        res.innerHTML = ` no`;
+      }
+    });
+  </script>
+</html>
