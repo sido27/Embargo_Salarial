@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Embargo Salarial Mensual</title>
+  <style>
+    * {
+      zoom: 130%;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>SMI = 965</h1>
+  SLARAIO NETO
+  <input type="text" id="neto" />
+
+  DEUDA
+  <input type="text" id="debt" />
+  <button id="btn">button</button>
+  <div id="res"></div>
+  <div id="finalRes"></div>
+</body>
+<script>
+  let salario = document.querySelector("#neto");
+  let debt = document.querySelector("#debt");
+  let res = document.querySelector("#res");
+  let finalRes = document.querySelector("#finalRes");
+  let btn = document.querySelector("#btn");
+
+
+  btn.addEventListener("click", function () {
+
+
+    if (salario.value > 965) {
+
+      // 1.86
+      let cont = 1
+      let sal = salario.value
+      let array_salario = []
+      while (sal > 965) {
+
+        array_salario.push(965)
+
+        if ((sal - 965) < 965) {
+          array_salario.push(sal - 965)
+        }
+
+        sal = sal - 965
+        cont++
+      }
+
+      let array_salario2 = []
+      for (i in array_salario) {
+
+
+        if (i == 1) {
+          array_salario2.push(array_salario[i] * 0.3)
+        }
+
+        if (i == 2) {
+          array_salario2.push(array_salario[i] * 0.5)
+        }
+
+        if (i == 3) {
+          array_salario2.push(array_salario[i] * 0.6)
+        }
+
+        if (i == 4) {
+          array_salario2.push(array_salario[i] * 0.75)
+        }
+
+        if (i >= 5) {
+          array_salario2.push(array_salario[i] * 0.9)
+        }
+
+      }
+      console.log(array_salario);
+      console.log(array_salario2);
+      let monthlyDebt = array_salario2.reduce((a, b) => a + b)
+      let durcacion = (debt.value / monthlyDebt).toFixed(2)
+
+
+      if (durcacion < 1) {
+        durcacion = 1
+      }
+
+
+
+
+
+
+
+      let salarioTrunced = Math.trunc((+salario.value / 965).toFixed(2))
+      let salarioDecimal = (((+salario.value / 965).toFixed(2)) % 1).toFixed(2)
+
+
+
+
+
+      res.innerHTML += ` 
+      
+      
+      Salario neto = ${salario.value} <br>
+
+      Deuda = ${debt.value} <br>
+
+     
+      ${salario.value} / 965 = ${salarioTrunced} tramos de 965 <br>
+      
+      ${salarioDecimal} tramo de 965 <br>
+
+      ${salarioTrunced} * 965    =   ${salarioTrunced * 965}  <br>
+
+     ${salario.value}  -  ${salarioTrunced * 965} = ${+salario.value - +(salarioTrunced * 965)} <br>
+
+
+     
+      
+     <hr>
+   
+      `;
+
+
+      let x = array_salario.map((salario, index) => {
+
+        if (index === 0) {
+
+          res.innerHTML += `El  ${salario} primero es INEMB <br>`
+        }
+
+        else if (index === 1) {
+          res.innerHTML += ` ${salario} *  30%  = ${array_salario2[0]} <br>`
+
+        }
+
+
+        else if (index === 2) {
+          res.innerHTML += ` ${salario} *  50% ${array_salario2[1]} <br>`
+
+        }
+
+
+        else if (index === 3) {
+          res.innerHTML += ` ${salario} *  60% ${array_salario2[2]} <br>`
+
+        }
+
+
+        else if (index === 4) {
+          res.innerHTML += ` ${salario} *  75% ${array_salario2[3]} <br>`
+
+        }
+
+
+
+        else if (index === 5) {
+          res.innerHTML += ` ${salario} * 90% ${array_salario2[4]} <br>`
+
+        }
+
+
+
+
+
+
+
+
+
+      })
+
+      finalRes.innerHTML = `   
+      
+      
+      
+     
+      <span style="color:red">  ${debt.value} / ${monthlyDebt} = ${(debt.value / monthlyDebt).toFixed(2)} meses <br></span> 
+    
+    
+      <span style="color:red">${monthlyDebt}€ en duración de ${durcacion} meses</span> 
+      
+      `
+
+
+    }
+
+    else {
+      res.innerHTML = ` no`;
+    }
+  });
+</script>
+
+</html>
