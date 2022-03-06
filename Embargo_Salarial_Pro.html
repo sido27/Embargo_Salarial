@@ -14,7 +14,7 @@
 </head>
 
 <body>
-  <h1>SMI = 965</h1>
+  <h1>SMI = 1000</h1>
   SLARAIO NETO
   <input type="text" id="neto" />
 
@@ -35,21 +35,21 @@
   btn.addEventListener("click", function () {
 
 
-    if (salario.value > 965) {
+    if (salario.value > 1000) {
 
       // 1.86
       let cont = 1
       let sal = salario.value
       let array_salario = []
-      while (sal > 965) {
+      while (sal > 1000) {
 
-        array_salario.push(965)
+        array_salario.push(1000)
 
-        if ((sal - 965) < 965) {
-          array_salario.push(sal - 965)
+        if ((sal - 1000) < 1000) {
+          array_salario.push(sal - 1000)
         }
 
-        sal = sal - 965
+        sal = sal - 1000
         cont++
       }
 
@@ -94,8 +94,8 @@
 
 
 
-      let salarioTrunced = Math.trunc((+salario.value / 965).toFixed(2))
-      let salarioDecimal = (((+salario.value / 965).toFixed(2)) % 1).toFixed(2)
+      let salarioTrunced = Math.trunc((+salario.value / 1000).toFixed(2))
+      let salarioDecimal = (((+salario.value / 1000).toFixed(2)) % 1).toFixed(2)
 
 
 
@@ -109,13 +109,13 @@
       Deuda = ${debt.value} <br>
 
      
-      ${salario.value} / 965 = ${salarioTrunced} tramos de 965 <br>
+      ${salario.value} / 1000 = ${salarioTrunced} tramos de 1000 <br>
       
-      ${salarioDecimal} tramo de 965 <br>
+      ${salarioDecimal} tramo de 1000 <br>
 
-      ${salarioTrunced} * 965    =   ${salarioTrunced * 965}  <br>
+      ${salarioTrunced} * 1000    =   ${salarioTrunced * 1000}  <br>
 
-     ${salario.value}  -  ${salarioTrunced * 965} = ${+salario.value - +(salarioTrunced * 965)} <br>
+     ${salario.value}  -  ${salarioTrunced * 1000} = ${+salario.value - +(salarioTrunced * 1000)} <br>
 
 
      
@@ -129,36 +129,36 @@
 
         if (index === 0) {
 
-          res.innerHTML += `El  ${salario} primero es INEMB <br>`
+          res.innerHTML += `1)   El  ${salario} primero es INEMB <br>`
         }
 
         else if (index === 1) {
-          res.innerHTML += ` ${salario} *  30%  = ${array_salario2[0]} <br>`
+          res.innerHTML += `2)  ${salario} *  30%  = ${array_salario2[0]} <br>`
 
         }
 
 
         else if (index === 2) {
-          res.innerHTML += ` ${salario} *  50% = ${array_salario2[1]} <br>`
+          res.innerHTML += `3) ${salario} *  50%  = ${array_salario2[1]} <br>`
 
         }
 
 
         else if (index === 3) {
-          res.innerHTML += ` ${salario} *  60% =  ${array_salario2[2]} <br>`
+          res.innerHTML += `4) ${salario} *  60% =  ${array_salario2[2]} <br>`
 
         }
 
 
         else if (index === 4) {
-          res.innerHTML += ` ${salario} *  75% = ${array_salario2[3]} <br>`
+          res.innerHTML += `5) ${salario} *  75% = ${array_salario2[3]} <br>`
 
         }
 
 
 
         else if (index === 5) {
-          res.innerHTML += ` ${salario} * 90%  = ${array_salario2[4]} <br>`
+          res.innerHTML += `6) ${salario} * 90%  = ${array_salario2[4]} <br>`
 
         }
 
@@ -180,8 +180,9 @@
       <span style="color:red">  ${debt.value} / ${monthlyDebt} = ${(debt.value / monthlyDebt).toFixed(2)} meses <br></span> 
     
     
-      <span style="color:red">${monthlyDebt}€ en duración de ${durcacion} meses</span> 
-      
+      <span style="color:red">${monthlyDebt}€ en duración de ${Math.trunc(durcacion)} meses</span> <br>
+
+      <span style="color:red"> salvo el último mes que pagará ${((durcacion % 1) * monthlyDebt).toFixed(2)}  </span> 
       `
 
 
